@@ -4,6 +4,7 @@ package com.bezkoder.springjwt.controllers;
 import com.bezkoder.springjwt.models.ImageModl;
 import com.bezkoder.springjwt.service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,6 +24,7 @@ public class ImageProvided {
     }
 
     @GetMapping(path = { "/get/{imageName}" })
+    @PreAuthorize("hasRole('ADMINABSENCE')")
     public ImageModl getImage(@PathVariable("imageName") String imageName) throws IOException {
         return imageService.getImage(imageName);
     }

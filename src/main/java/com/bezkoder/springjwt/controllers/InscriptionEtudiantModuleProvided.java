@@ -4,6 +4,7 @@ package com.bezkoder.springjwt.controllers;
 import com.bezkoder.springjwt.models.InscriptionEtudiantModule;
 import com.bezkoder.springjwt.service.InscriptionEtudiantModuleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public class InscriptionEtudiantModuleProvided {
     private InscriptionEtudiantModuleService inscriptionEtudiantModuleService;
 
     @GetMapping("/moduleSemestreOption/code/{code}")
+    @PreAuthorize(" hasRole('PROFESSEUR')")
     public List<InscriptionEtudiantModule> findByModuleSemestreOptionCode(@PathVariable String code) {
         return inscriptionEtudiantModuleService.findByModuleSemestreOptionCode(code);
     }

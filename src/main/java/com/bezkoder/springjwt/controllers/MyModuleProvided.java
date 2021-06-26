@@ -18,10 +18,43 @@ public class MyModuleProvided {
     private MyModuleService myModuleService;
 
     @GetMapping("/")
-    @PreAuthorize("hasRole('ADMIN')")
     public List<MyModule> findAll() {
         return myModuleService.findAll();
     }
 
+
+    @GetMapping("/code/{code}")
+    public MyModule findByCode(@PathVariable String code) {
+        return myModuleService.findByCode(code);
+    }
+
+    @GetMapping("/libelle/{libelle}")
+    public MyModule findByLibelle(@PathVariable String libelle) {
+        return myModuleService.findByLibelle(libelle);
+    }
+
+    @PostMapping("/")
+    @PreAuthorize("hasRole('ADMINOTE')")
+    public int save(@RequestBody MyModule myModule) {
+        return myModuleService.save(myModule);
+    }
+
+    @PutMapping("/")
+    @PreAuthorize("hasRole('ADMINOTE')")
+    public MyModule update(@RequestBody MyModule myModule) {
+        return myModuleService.update(myModule);
+    }
+
+    @PostMapping("/delete-multiple-by-code")
+    @PreAuthorize("hasRole('ADMINOTE')")
+    public int deleteByCode(@RequestBody List<MyModule> myModules) {
+        return myModuleService.deleteByCode(myModules);
+    }
+
+    @DeleteMapping("/code/{code}")
+    @PreAuthorize("hasRole('ADMINOTE')")
+    public int deleteByCode(@PathVariable String code) {
+        return myModuleService.deleteByCode(code);
+    }
 
 }

@@ -3,6 +3,7 @@ package com.bezkoder.springjwt.controllers;
 import com.bezkoder.springjwt.models.NoteEtudiantSemestre;
 import com.bezkoder.springjwt.service.NoteEtudiantSemestreService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,6 +25,7 @@ public class NoteEtudiantSemestreProvided {
         return noteEtudiantSemestreService.findByEtudiantCneAndSemestreCode(cne, code);
     }
     @GetMapping("/Semestre/code/{code}")
+
     public List<NoteEtudiantSemestre> findBySemestreCode(@PathVariable String code) {
         return noteEtudiantSemestreService.findBySemestreCode(code);
     }
@@ -38,6 +40,7 @@ public class NoteEtudiantSemestreProvided {
     }
 
     @GetMapping("/semestre/codeSemestre/{codeSemestre}/option/codeOption/{codeOption}/annee-universitaire/libelle/{libelle}")
+    @PreAuthorize("hasRole('ADMINOTE')")
     public List<NoteEtudiantSemestre> notesSemestre(@PathVariable int codeSemestre,@PathVariable String codeOption,@PathVariable String libelle) {
         return noteEtudiantSemestreService.notesSemestre(codeSemestre, codeOption, libelle);
     }

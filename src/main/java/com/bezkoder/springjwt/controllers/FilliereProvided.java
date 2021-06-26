@@ -3,6 +3,7 @@ package com.bezkoder.springjwt.controllers;
 import com.bezkoder.springjwt.models.Filliere;
 import com.bezkoder.springjwt.service.FilliereService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,6 +25,7 @@ public class FilliereProvided {
     }
 
     @DeleteMapping("/code/{code}")
+    @PreAuthorize("hasRole('ADMINOTE')")
     public int deleteByCode(@PathVariable String code) {
         return filliereService.deleteByCode(code);
     }
@@ -31,7 +33,9 @@ public class FilliereProvided {
     public List<Filliere> findAll() {
         return filliereService.findAll();
     }
+
     @PostMapping("/")
+    @PreAuthorize("hasRole('ADMINOTE')")
     public int save(@RequestBody Filliere filliere) {
         return filliereService.save(filliere);
     }

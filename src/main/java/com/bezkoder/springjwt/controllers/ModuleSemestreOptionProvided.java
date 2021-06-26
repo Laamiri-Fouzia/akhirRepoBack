@@ -3,6 +3,7 @@ package com.bezkoder.springjwt.controllers;
 import com.bezkoder.springjwt.models.ModuleSemestreOption;
 import com.bezkoder.springjwt.service.ModuleSemestreOptionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,6 +25,7 @@ public class ModuleSemestreOptionProvided {
         return moduleSemestreOptionService.findByMyOptionCode(code);
     }
     @PostMapping("/")
+    @PreAuthorize("hasRole('ADMINOTE')")
     public int save(@RequestBody  ModuleSemestreOption moduleSemestreOption) {
         return moduleSemestreOptionService.save(moduleSemestreOption);
     }
@@ -39,10 +41,13 @@ public class ModuleSemestreOptionProvided {
     }
 
     @GetMapping("/semestre/code/{codeSemestre}/anneeuniv/anneeOne/{annee}/option/code/{cmyOption}")
+    @PreAuthorize("hasRole('COORDONNATEURMODULE') or hasRole('ADMINOTE') or hasRole('PROFESSEUR')")
     public List<ModuleSemestreOption> findBySemestreCodeAndAnneeUniversitaireAnneeOneAndMyOptionCode(@PathVariable int codeSemestre,@PathVariable  Long annee,@PathVariable  String cmyOption) {
         return moduleSemestreOptionService.findBySemestreCodeAndAnneeUniversitaireAnneeOneAndMyOptionCode(codeSemestre, annee, cmyOption);
     }
+
     @DeleteMapping("/code/{code}")
+    @PreAuthorize("hasRole('ADMINOTE')")
     public int deleteByCode(@PathVariable String code) {
         return moduleSemestreOptionService.deleteByCode(code);
     }

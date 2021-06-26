@@ -100,29 +100,44 @@ public class AuthController {
 			roles.add(userRole);*/
 			return ResponseEntity
 					.badRequest()
-					.body(new MessageResponse("Error: roles is null and his lenght is !"+roles.size()));
+					.body(new MessageResponse("Error: Pas de role selectionné"));
 
 		} else {
 			strRoles.forEach(role -> {
-				switch (role) {
-					
-				case "admin":
-					Role adminRole = roleRepository.findByName(ERole.ROLE_ADMINOTE)
-							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-					roles.add(adminRole);
+				if(role!=null){
+					switch (role) {
 
-					break;
-				case "mod":
-					Role modRole = roleRepository.findByName(ERole.ROLE_PROFESSEUR)
-							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-					roles.add(modRole);
+						case "admin note":
+							Role adminNoteRole = roleRepository.findByName(ERole.ROLE_ADMINOTE)
+									.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+							roles.add(adminNoteRole);
+							break;
 
-					break;
-				default:
+						case "professeur":
+							Role modRole = roleRepository.findByName(ERole.ROLE_PROFESSEUR)
+									.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+							roles.add(modRole);
+							break;
+
+						case "coordonnateur module":
+							Role corRole = roleRepository.findByName(ERole.ROLE_COORDONNATEURMODULE)
+									.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+							roles.add(corRole);
+							break;
+
+						case "admin absence":
+							Role adminAbsRole = roleRepository.findByName(ERole.ROLE_ADMINABSENCE)
+									.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+							roles.add(adminAbsRole);
+							break;
+
+				/*default:
 					Role userRole = roleRepository.findByName(ERole.ROLE_ADMINABSENCE)
 							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-					roles.add(userRole);
+					roles.add(userRole);*/
+					}
 				}
+
 			});
 		}
 

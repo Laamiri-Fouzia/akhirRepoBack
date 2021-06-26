@@ -3,6 +3,7 @@ package com.bezkoder.springjwt.controllers;
 import com.bezkoder.springjwt.models.NoteEtudiantModule;
 import com.bezkoder.springjwt.service.NoteEtudiantModuleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,6 +24,7 @@ public class NoteEtudiantModuleProvided {
     }
 
     @GetMapping("/module-semestre-option/codeModule/{codeModule}")
+    @PreAuthorize("hasRole('ADMINABSENCE') or hasRole('COORDONNATEURMODULE')")
     public List<NoteEtudiantModule> findNotes(@PathVariable String codeModule) {
         return noteEtudiantModuleService.findNotes(codeModule);
     }
@@ -38,6 +40,7 @@ public class NoteEtudiantModuleProvided {
         return noteEtudiantModuleService.findByEtatValidationCode(code);
     }
     @GetMapping("moduleSemestreOption/codeModule/{codeModule}/etatValidation/codeEtat/{codeEtat}")
+    @PreAuthorize("hasRole('COORDONNATEURMODULE')")
     public List<NoteEtudiantModule> findByModuleSemestreOptionCodeAndEtatValidationCode(@PathVariable String codeModule,@PathVariable String codeEtat) {
         return noteEtudiantModuleService.findByModuleSemestreOptionCodeAndEtatValidationCode(codeModule, codeEtat);
     }
@@ -58,6 +61,7 @@ public class NoteEtudiantModuleProvided {
         return noteEtudiantModuleService.findByEtudiantCneAndModuleSemestreOptionAnneeUniversitaireLibelle(cne, libelle);
     }
     @GetMapping("Etudiant/cne/{cne}/moduleSemestreOption/semestre/code/{code}")
+    @PreAuthorize("hasRole('ADMINOTE')")
     public List<NoteEtudiantModule> findByEtudiantCneAndModuleSemestreOptionSemestreCode(@PathVariable String cne,@PathVariable int code) {
         return noteEtudiantModuleService.findByEtudiantCneAndModuleSemestreOptionSemestreCode(cne, code);
     }
@@ -65,11 +69,13 @@ public class NoteEtudiantModuleProvided {
 
 
     @PutMapping("/updatenormal/")
+    @PreAuthorize("hasRole('COORDONNATEURMODULE')")
     public void updateNormal(@RequestBody NoteEtudiantModule noteEtudiantModule) {
         noteEtudiantModuleService.updateNormal(noteEtudiantModule);
     }
 
     @PutMapping("/updateratt/")
+    @PreAuthorize("hasRole('COORDONNATEURMODULE')")
     public void updateRat(@RequestBody NoteEtudiantModule noteEtudiantModule) {
         noteEtudiantModuleService.updateRat(noteEtudiantModule);
     }

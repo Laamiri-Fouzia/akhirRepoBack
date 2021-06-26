@@ -5,4 +5,4 @@ public enum ERole {
     ROLE_COORDONNATEURMODULE,
     ROLE_ADMINOTE,
     ROLE_ADMINABSENCE
-}
+  }
