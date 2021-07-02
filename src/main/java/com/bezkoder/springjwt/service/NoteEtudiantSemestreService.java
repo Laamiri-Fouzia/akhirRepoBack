@@ -73,6 +73,7 @@ public class NoteEtudiantSemestreService {
 
     public List<NoteEtudiantSemestre> notesSemestre(int codeSemestre,String codeOption,String libelle){
 
+
         List<NoteEtudiantSemestre> notesSemestre=new ArrayList<NoteEtudiantSemestre>();
         List<EtudiantOption> etudiants=etudiantOptionService.findByMyOptionCodeAndAnneeUniversitaireLibelleAndSemestreCode(codeOption,libelle,codeSemestre);
 

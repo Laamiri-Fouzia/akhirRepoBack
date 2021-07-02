@@ -23,7 +23,7 @@ public class AnneeUniversitaireProvided {
     private AnneeUniversitaireService anneeUniversitaireService;
 
     @GetMapping("/")
-    @PreAuthorize("hasRole('ADMINOTE')")
+    //@PreAuthorize("hasRole('ADMINOTE') or hasRole('PROFESSEUR')")
     public List<AnneeUniversitaire> findAll() {
         return anneeUniversitaireService.findAll();
     }

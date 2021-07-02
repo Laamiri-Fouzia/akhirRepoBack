@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("ispits-project/seance")
-@CrossOrigin(origins = {"http://localhost:4200"})
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class SeanceProvided {
     @Autowired
     private SeanceService seanceService;
@@ -33,5 +33,10 @@ public class SeanceProvided {
     @PreAuthorize("hasRole('ADMINOTE')")
     public void update(@RequestBody Seance seance) {
          seanceService.update(seance);
+    }
+
+    @GetMapping("/moduleSemestreOption/anneeUniversitaire/libelle/{libelle}/moduleSemestreOption/option/code/{code}")
+    public List<Seance> findByModuleSemestreOptionAnneeUniversitaireLibelleAndModuleSemestreOptionMyOptionCode(@PathVariable String libelle,@PathVariable String code) {
+        return seanceService.findByModuleSemestreOptionAnneeUniversitaireLibelleAndModuleSemestreOptionMyOptionCode(libelle, code);
     }
 }

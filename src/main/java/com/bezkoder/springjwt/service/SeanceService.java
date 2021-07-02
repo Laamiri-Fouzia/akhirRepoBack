@@ -44,4 +44,8 @@ public class SeanceService {
         newSeance.setModuleSemestreOption(seance.getModuleSemestreOption());
         seanceDao.save(newSeance);
     }
+
+    public List<Seance> findByModuleSemestreOptionAnneeUniversitaireLibelleAndModuleSemestreOptionMyOptionCode(String libelle, String optCode) {
+        return seanceDao.findByModuleSemestreOptionAnneeUniversitaireLibelleAndModuleSemestreOptionMyOptionCode(libelle, optCode);
+     }
 }

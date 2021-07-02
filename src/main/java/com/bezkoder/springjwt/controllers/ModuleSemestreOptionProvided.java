@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = {"http://localhost:4200"})
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("ispits-project/module-semestre-option")
 public class ModuleSemestreOptionProvided {
@@ -41,7 +41,7 @@ public class ModuleSemestreOptionProvided {
     }
 
     @GetMapping("/semestre/code/{codeSemestre}/anneeuniv/anneeOne/{annee}/option/code/{cmyOption}")
-    @PreAuthorize("hasRole('COORDONNATEURMODULE') or hasRole('ADMINOTE') or hasRole('PROFESSEUR')")
+    @PreAuthorize("hasRole('COORDONNATEURMODULE') or hasRole('ADMINOTE') or hasRole('PROFESSEUR') or hasRole('ADMINABSENCE')")
     public List<ModuleSemestreOption> findBySemestreCodeAndAnneeUniversitaireAnneeOneAndMyOptionCode(@PathVariable int codeSemestre,@PathVariable  Long annee,@PathVariable  String cmyOption) {
         return moduleSemestreOptionService.findBySemestreCodeAndAnneeUniversitaireAnneeOneAndMyOptionCode(codeSemestre, annee, cmyOption);
     }

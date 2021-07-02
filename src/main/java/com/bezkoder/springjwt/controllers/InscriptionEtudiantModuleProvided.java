@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("ispits-project/inscriptionEtudiantModule")
-@CrossOrigin(origins = {"http://localhost:4200"})
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class InscriptionEtudiantModuleProvided {
     @Autowired
     private InscriptionEtudiantModuleService inscriptionEtudiantModuleService;

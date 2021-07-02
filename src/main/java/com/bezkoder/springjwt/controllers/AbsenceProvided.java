@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("ispits-project/absence")
-@CrossOrigin(origins = {"http://localhost:4200"})
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class AbsenceProvided {
     @Autowired
     private AbsenceService absenceService;
@@ -25,12 +25,11 @@ public class AbsenceProvided {
 
 
     @GetMapping("/etudiant/cne/{cne}/seance/moduleSemestreOption/semestre/code/{semestre}/seance/moduleSemestreOption/anneuniv/libelle/{anne}")
-    @PreAuthorize("hasRole('PROFESSEUR')")
     public List<Absence> findByEtudiantCneAndSeanceModuleSemestreOptionSemestreCodeAndSeanceModuleSemestreOptionAnneeUniversitaireLibelle(@PathVariable String cne,@PathVariable int semestre,@PathVariable String anne) {
         return absenceService.findByEtudiantCneAndSeanceModuleSemestreOptionSemestreCodeAndSeanceModuleSemestreOptionAnneeUniversitaireLibelle(cne, semestre, anne);
     }
     @GetMapping("/etudiant/cne/{cne}/seance/moduleSemestreOption/code/{codeModule}")
-    @PreAuthorize("hasRole('ADMINABSENCE')")
+    @PreAuthorize("hasRole('ADMINABSENCE') or hasRole('COORDONNATEURMODULE') ")
     public List<Absence> findEtudiantAbsente(@PathVariable String cne,@PathVariable String codeModule) {
         return absenceService.findEtudiantAbsente(cne, codeModule);
     }

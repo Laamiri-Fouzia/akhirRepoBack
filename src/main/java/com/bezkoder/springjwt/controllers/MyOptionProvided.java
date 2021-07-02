@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = {"http://localhost:4200"})
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("ispits-project/option")
 public class MyOptionProvided {
     @Autowired
     private MyOptionService myOptionService;
-    @PreAuthorize("hasRole('COORDONNATEURMODULE')")
+    @PreAuthorize("hasRole('COORDONNATEURMODULE') or hasRole('ADMINABSENCE') ")
     @GetMapping("/code/{code}")
     public MyOption findByCode(@PathVariable String code) {
         return myOptionService.findByCode(code);

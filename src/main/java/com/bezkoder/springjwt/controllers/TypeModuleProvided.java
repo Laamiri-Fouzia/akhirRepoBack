@@ -6,7 +6,7 @@ import com.bezkoder.springjwt.service.TypeModuleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = {"http://localhost:4200"})
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("ispits-project/typeModule")
 public class TypeModuleProvided {

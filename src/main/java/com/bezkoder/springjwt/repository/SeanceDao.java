@@ -11,5 +11,6 @@ import java.util.List;
 public interface SeanceDao extends JpaRepository<Seance,Long> {
      Seance findByLibelle(String libelle);
      List<Seance> findByModuleSemestreOptionCode(String code);
+     List<Seance> findByModuleSemestreOptionAnneeUniversitaireLibelleAndModuleSemestreOptionMyOptionCode(String libelle, String optCode);
 
 }

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.math.BigDecimal;
 import java.util.List;
 
-@CrossOrigin(origins = {"http://localhost:4200"})
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("ispits-project/ponderation")
 public class PonderationProvided {
