@@ -51,4 +51,11 @@ public class ModuleSemestreOptionProvided {
     public int deleteByCode(@PathVariable String code) {
         return moduleSemestreOptionService.deleteByCode(code);
     }
+
+    @GetMapping("/semestre/code/{codeSemestre}/anneeuniv/anneeOne/{annee}/option/code/{cmyOption}/typeModule/code/{codeType}")
+    @PreAuthorize("hasRole('COORDONNATEURMODULE')")
+    public List<ModuleSemestreOption> findBySemestreCodeAndAnneeUniversitaireAnneeOneAndMyOptionCodeAndTypeModuleCode(@PathVariable int codeSemestre,@PathVariable  Long annee,@PathVariable String cmyOption,@PathVariable String codeType) {
+        return moduleSemestreOptionService.findBySemestreCodeAndAnneeUniversitaireAnneeOneAndMyOptionCodeAndTypeModuleCode(codeSemestre, annee, cmyOption, codeType);
+    }
+
 }

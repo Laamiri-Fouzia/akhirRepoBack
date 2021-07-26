@@ -61,7 +61,7 @@ public class NoteEtudiantModuleProvided {
         return noteEtudiantModuleService.findByEtudiantCneAndModuleSemestreOptionAnneeUniversitaireLibelle(cne, libelle);
     }
     @GetMapping("Etudiant/cne/{cne}/moduleSemestreOption/semestre/code/{code}")
-    @PreAuthorize("hasRole('ADMINOTE')")
+    //@PreAuthorize("hasRole('ADMINOTE')")
     public List<NoteEtudiantModule> findByEtudiantCneAndModuleSemestreOptionSemestreCode(@PathVariable String cne,@PathVariable int code) {
         return noteEtudiantModuleService.findByEtudiantCneAndModuleSemestreOptionSemestreCode(cne, code);
     }

@@ -62,6 +62,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/ispits-project/Etudiant/").permitAll()
 			.antMatchers("/ispits-project/option/").permitAll()
 			.antMatchers("/ispits-project/absence/updateForImage").permitAll()
+			.antMatchers("/ispits-project/note-etudiant-modul/Etudiant/cne/{cne}/moduleSemestreOption/semestre/code/{code}").permitAll()
+			.antMatchers("/ispits-project/note-etudiant-stage/Etudiant/cne/{cne}/moduleSemestreOption/semestre/code/{code}").permitAll()
 			.antMatchers("/ispits-project/annee-universitaire/").permitAll()
 			.antMatchers("/ispits-project/image/upload/nameData/{nameData}").permitAll()
 			.antMatchers("/ispits-project/seance//moduleSemestreOption/anneeUniversitaire/libelle/{libelle}/moduleSemestreOption/option/code/{code}").permitAll()

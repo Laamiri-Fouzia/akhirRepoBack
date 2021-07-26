@@ -48,7 +48,7 @@ public class ModuleSemestreOptionService {
         TypeModule typeModule=typeModuleService.findByCode(codeType);
         AnneeUniversitaire anneeUniversitaire=anneeUniversitaireService.findByAnneeOne(libellean);
 
-        if(semestre==null || typeModule==null || myModule==null || myOption==null )
+        if(semestre==null || typeModule==null || myModule==null || myOption==null)
             return -2;
         moduleSemestreOption.setSemestre(semestre);
         moduleSemestreOption.setMyModule(myModule);
@@ -97,5 +97,9 @@ public class ModuleSemestreOptionService {
 
     public List<ModuleSemestreOption> findBySemestreCodeAndAnneeUniversitaireAnneeOneAndMyOptionCode(int codeSemestre, Long annee, String cmyOption) {
         return moduleSemestreOptionDao.findBySemestreCodeAndAnneeUniversitaireAnneeOneAndMyOptionCode(codeSemestre, annee, cmyOption);
+    }
+
+    public List<ModuleSemestreOption> findBySemestreCodeAndAnneeUniversitaireAnneeOneAndMyOptionCodeAndTypeModuleCode(int codeSemestre, Long annee, String cmyOption, String codeType) {
+        return moduleSemestreOptionDao.findBySemestreCodeAndAnneeUniversitaireAnneeOneAndMyOptionCodeAndTypeModuleCode(codeSemestre, annee, cmyOption, codeType);
     }
 }
